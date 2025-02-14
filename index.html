@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>해피 발렌타인 데이 다혜 ❤️</title>
+    <title>다혜야, 너를 위해 ❤️</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="hearts-container"></div> <!-- Added for floating hearts -->
+
+    <p class="valentines-text">Happy Valentine's Day</p> <!-- Moved text -->
+
+    <div class="password-container">
+        <p class="secrets-locked-text">Secrets Locked. Enter Password</p> <!-- Added text -->
+        <div class="password-inputs">
+            <input type="text" maxlength="1" class="password-square">
+            <input type="text" maxlength="1" class="password-square">
+            <input type="text" maxlength="1" class="password-square">
+            <input type="text" maxlength="1" class="password-square">
+        </div>
+        <button id="submit-password">unlock</button>
+    </div>
+
+    <div class="container" style="display: none;">
         <div class="envelope">
             <div class="flap"></div>
             <div class="letter">
-                <p>Happy Valentine's Day, my love! 💕</p>
-                <p>You make my world brighter every day. ❤️</p>
+                <img src="letter.png" alt="Valentine's Day Letter">
             </div>
         </div>
         <p class="click-text">Click to open 💌</p>

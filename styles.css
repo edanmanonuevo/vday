@@ -1,11 +1,61 @@
+html, body {
+    height: 100%;
+    overflow: auto; /* Allow scrolling */
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Ensure the body takes up the full height */
     background-color: #ffccd5;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Times New Roman', Times, serif; /* Change font to Times New Roman */
     flex-direction: column;
+    overflow: visible; /* Allow the body to expand */
+}
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.password-container input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 2px solid #ff4d6d;
+    border-radius: 5px;
+}
+
+.password-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.password-square {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid #ff4d6d;
+    border-radius: 5px;
+}
+
+.password-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.password-container button:hover {
+    background-color: #ff4d6d;
 }
 
 .container {
@@ -14,6 +64,9 @@ body {
     height: 150px;
     cursor: pointer;
     text-align: center;
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    overflow: visible; /* Allow the letter to overflow the container */
+    z-index: 1; /* Ensure the container is behind the letter */
 }
 
 .envelope {
@@ -26,7 +79,12 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, overflow 0.5s ease-in-out;
+    z-index: 1; /* Ensure the envelope is behind the letter */
+}
+
+.open .envelope {
+    overflow: visible; /* Allow the letter to overflow the envelope when opened */
 }
 
 .flap {
@@ -37,26 +95,78 @@ body {
     background: #ff6b81;
     transition: transform 0.5s ease-in-out;
     transform-origin: top;
-}
-
-.letter {
-    position: absolute;
-    top: 100%;
-    width: 90%;
-    background: white;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: top 0.5s ease-in-out;
+    clip-path: polygon(50% 100%, 0% 0%, 100% 0%); /* Make the flap an upside-down triangle */
 }
 
 .open .flap {
     transform: rotateX(180deg);
 }
 
+.letter {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 100px; /* Adjust height to fit the image */
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: top 0.5s ease-in-out, transform 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* Ensure the image is not clipped */
+    z-index: 2; /* Ensure the letter is above the envelope */
+    background: none; /* Remove background */
+}
+
+.letter img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+    transition: transform 0.5s ease-in-out;
+}
+
 .open .letter {
-    top: 20%;
+    top: -140%; /* Move the letter upwards outside the envelope */
+    transform: translate(-50%, 0) scale(1); /* Keep the letter the same size initially */
+}
+
+.open .letter img {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease-in-out 0.5s, top 0.5s ease-in-out 0.5s;
+}
+
+.open .letter.active {
+    top: 50%; /* Move the letter back to the center vertically */
+    transform: translate(-50%, -50%) scale(3); /* Increase the size of the letter after moving upwards */
+    position: relative; /* Ensure the letter is positioned relative to the viewport */
+}
+
+.close .letter {
+    top: 100%; /* Move the letter back down */
+    transform: translate(-50%, 0) scale(1); /* Keep the letter the same size */
+}
+
+.close .letter img {
+    transform: scale(1); /* Reset the size of the letter image */
+}
+
+.open .click-text {
+    display: none; /* Hide the 'click to open' text */
+}
+
+.open .container {
+    width: 90vw; /* Make the container bigger */
+    height: 90vh; /* Make the container bigger */
+    overflow: visible; /* Allow the letter to overflow the container */
+    z-index: 1; /* Ensure the container is behind the letter */
+    position: relative; /* Ensure the container is positioned relative to the viewport */
 }
 
 .click-text {
@@ -64,4 +174,71 @@ body {
     font-size: 14px;
     color: #d6336c;
     font-weight: bold;
+}
+
+.valentines-text {
+    font-size: 60px; /* Increase font size */
+    color: #ff6b81;
+    margin-bottom: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 12%; /* Position towards the top */
+}
+
+.secrets-locked-text {
+    font-size: 20px; /* Increase font size */
+    color: #ff6b81;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 35%; /* Position towards the top */
+}
+
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interaction with hearts */
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d6d;
+    transform: rotate(-45deg);
+    animation: float 10s infinite; /* Slower animation */
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d6d;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 10px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(-45deg); /* Start from the bottom */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(-45deg); /* Float to the top */
+        opacity: 0;
+    }
 }
