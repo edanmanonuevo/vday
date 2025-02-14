@@ -144,7 +144,7 @@ body {
 }
 
 .open .letter.active {
-    top: 45%; /* Move the letter back to the center vertically */
+    top: 50%; /* Move the letter back to the center vertically */
     transform: translate(-50%, -50%) scale(3); /* Increase the size of the letter after moving upwards */
     position: relative; /* Ensure the letter is positioned relative to the viewport */
 }
