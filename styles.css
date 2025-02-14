@@ -26,6 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: transform 0.5s ease-in-out;
 }
 
 .flap {
@@ -50,11 +51,11 @@ body {
     transition: top 0.5s ease-in-out;
 }
 
-.envelope.open .flap {
+.open .flap {
     transform: rotateX(180deg);
 }
 
-.envelope.open .letter {
+.open .letter {
     top: 20%;
 }
 

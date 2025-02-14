@@ -1,5 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".container").addEventListener("click", function () {
-        document.querySelector(".envelope").classList.toggle("open");
-    });
-});
+window.onload = function () {
+    const container = document.querySelector(".container");
+    const envelope = document.querySelector(".envelope");
+
+    if (container && envelope) {
+        container.addEventListener("click", function () {
+            envelope.classList.toggle("open");
+        });
+    } else {
+        console.error("Elements not found! Check your HTML structure.");
+    }
+};
