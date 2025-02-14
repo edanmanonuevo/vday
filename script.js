@@ -81,7 +81,43 @@ window.onload = function () {
                 heart.remove();
             }, 10000); // Match the animation duration
         }
+
+        // Adjust the height of the page dynamically as the user zooms in
+        function adjustPageHeight() {
+            const img = document.querySelector(".letter img");
+            if (!img) return;
+
+            // Get image's natural height and width
+            const naturalHeight = img.naturalHeight;
+            const naturalWidth = img.naturalWidth;
+
+            // Get current width of the image (after zooming)
+            const currentWidth = img.getBoundingClientRect().width;
+
+            // Calculate the zoom scale
+            const scale = currentWidth / naturalWidth;
+
+            // Adjust the body's height based on the zoomed-in height
+            document.body.style.height = `${naturalHeight * scale}px`;
+        }
+
+        // Listen for zoom changes (window resize event detects zoom)
+        window.addEventListener("resize", adjustPageHeight);
+
+        // Adjust height initially in case of any zoom applied on load
+        adjustPageHeight();
     } else {
         console.error("Elements not found! Check your HTML structure.");
     }
 };
+
+// Add event listener to toggle zoom on the letter image
+document.addEventListener("DOMContentLoaded", function () {
+    const letterImage = document.querySelector(".letter img");
+
+    if (letterImage) {
+        letterImage.addEventListener("click", function () {
+            letterImage.classList.toggle("zoomed");
+        });
+    }
+});
