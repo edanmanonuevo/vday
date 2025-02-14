@@ -3,7 +3,7 @@ window.onload = function () {
     const envelope = document.querySelector(".envelope");
 
     if (container && envelope) {
-        container.addEventListener("click", function () {
+        envelope.addEventListener("click", function () { // Changed from container to envelope
             envelope.classList.toggle("open");
         });
     } else {
