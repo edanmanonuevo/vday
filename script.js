@@ -118,6 +118,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (letterImage) {
         letterImage.addEventListener("click", function () {
             letterImage.classList.toggle("zoomed");
+            if (letterImage.classList.contains("zoomed")) {
+                letterImage.style.paddingBottom = "50px"; // Add padding when zoomed in
+            } else {
+                letterImage.style.paddingBottom = "0"; // Remove padding when zoomed out
+            }
         });
     }
 });

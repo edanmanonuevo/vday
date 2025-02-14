@@ -144,9 +144,13 @@ body {
 }
 
 .open .letter.active {
-    top: 50%; /* Move the letter back to the center vertically */
+    top: 45%; /* Move the letter back to the center vertically */
     transform: translate(-50%, -50%) scale(3); /* Increase the size of the letter after moving upwards */
     position: relative; /* Ensure the letter is positioned relative to the viewport */
+}
+
+.open .letter.active img.zoomed {
+    padding-bottom: 50px; /* Add padding under the image when zoomed in */
 }
 
 .close .letter {
